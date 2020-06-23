@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - 12.18.1
+
+branches:
+  only:
+    - master
+    - /CBF-\d*-/
+
+jobs:
+  include:
+    - name: "Jest + Enzyme Tests"
+      script:
+        - yarn install
+        - yarn test
