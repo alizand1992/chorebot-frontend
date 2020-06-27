@@ -6,7 +6,6 @@ node_js:
 branches:
   only:
     - master
-    - /CBF-\d*-/
 
 jobs:
   include:
