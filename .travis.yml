@@ -13,3 +13,15 @@ jobs:
       script:
         - yarn install
         - yarn test
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_01ee5a5a4535_key -iv $encrypted_01ee5a5a4535_iv -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - eval "$(ssh-agent -s)"
+  - cp .travis/id_rsa ~/.ssh/deploy_rsa
+  - chmod 600 ~/.ssh/deploy_rsa
+  - ssh-add ~/.ssh/deploy_rsa
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./deploy.sh
