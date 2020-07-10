@@ -15,7 +15,7 @@ class Form extends React.Component {
       data: {
         name: props.name || '',
         description: props.description || '',
-        levelOfEffort: props.levelOfEffort || 0,
+        levelOfEffort: props.levelOfEffort || 1,
       }
     };
   }

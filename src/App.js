@@ -1,6 +1,7 @@
 import React from 'react';
 import TopMenu from './components/TopMenu';
 import Form from './components/Task/Form';
+import Task from './components/Task';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <TopMenu />
       <br />
       <Form />
+      <Task />
     </div>
   );
 }
