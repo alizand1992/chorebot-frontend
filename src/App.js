@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import TopMenu from './components/TopMenu';
-import Form from './components/Task/Form';
-import Task from './components/Task';
 
 function App() {
+  const Form = React.lazy(() => import('./components/Task/Form'));
+  const Task = React.lazy(() => import('./components/Task'));
+
   return (
     <div className="App">
       <TopMenu />
       <br />
-      <Form />
-      <Task />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Form />
+      </Suspense>
+      <br />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Task />
+      </Suspense>
     </div>
   );
 }
