@@ -2,9 +2,11 @@ import React from 'react';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import TopMenu from '../../../components/TopMenu';
+
 import AppBar from '@material-ui/core/AppBar';
 import { Typography } from '@material-ui/core';
+
+import TopMenu from '../../../components/TopMenu';
 
 configure({ adapter: new Adapter() });
 
