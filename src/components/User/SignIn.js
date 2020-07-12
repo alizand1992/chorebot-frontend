@@ -14,7 +14,7 @@ class SignIn extends React.Component {
     this.state = {
       data: {
         email: props.email || '',
-        password: props.password || ''
+        password: props.password || '',
       },
     };
   }
@@ -23,8 +23,8 @@ class SignIn extends React.Component {
     this.setState({
       data: {
         ...this.state.data,
-        [field]: e.target.value
-      }
+        [field]: e.target.value,
+      },
     });
   }
 
