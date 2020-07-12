@@ -32,6 +32,32 @@ describe('Task -> Form', () => {
       expect(wrapper.find(Button)).toHaveLength(1);
       expect(wrapper.find(Button).text()).toBe('Save');
     });
+
+    describe('onChange of fields', () => {
+      it('updates the state for email', () => {
+        wrapper.find({id: 'name'})
+          .simulate('change', { target: { value: 'Taking out the garbage' } });
+
+        expect(wrapper.state().data.name).toBe('Taking out the garbage');
+      });
+
+      it('updates the state for email', () => {
+        wrapper.find({id: 'description'})
+          .simulate('change', { target: {
+            value: 'This requires taking picking it up and taking it all the way to the cans.'
+          } });
+
+        expect(wrapper.state().data.description)
+          .toBe('This requires taking picking it up and taking it all the way to the cans.');
+      });
+
+      it('has a `level-of-effort` input', () => {
+        wrapper.find({id: 'level-of-effort'})
+          .simulate('change', { target: { value: '5' } });
+
+        expect(wrapper.state().data.levelOfEffort).toBe('5');
+      });
+    });
   });
 
   describe('with props', () => {
