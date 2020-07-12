@@ -7,7 +7,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +15,8 @@ class SignIn extends React.Component {
       data: {
         email: props.email || '',
         password: props.password || '',
+        confirmPassword: props.confirmPassword || '',
+        screenName: props.screenName || '',
       },
     };
   }
@@ -29,7 +31,7 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state.data;
+    const { email, password, confirmPassword, screenName } = this.state.data;
 
     const theme = createMuiTheme();
     const styles = {
@@ -49,9 +51,18 @@ class SignIn extends React.Component {
             account_circle
           </i>
           <br />
-          Sign In
+          Sign Up
         </Typography>
         <form noValidate={true}>
+          <TextField variant="outlined"
+                     margin="normal"
+                     required={true}
+                     fullWidth={true}
+                     id="screen-name"
+                     label="Screen Name"
+                     value={screenName}
+                     onChange={(e) => this.handleChange(e, 'screenName')}
+                     autoComplete="screen-name" />
           <TextField variant="outlined"
                      margin="normal"
                      required={true}
@@ -72,6 +83,16 @@ class SignIn extends React.Component {
                      value={password}
                      onChange={(e) => this.handleChange(e, 'password')}
                      autoComplete="password" />
+          <TextField variant="outlined"
+                     margin="normal"
+                     required={true}
+                     fullWidth={true}
+                     id="confirm-password"
+                     label="Confirm Password"
+                     type="password"
+                     value={confirmPassword}
+                     onChange={(e) => this.handleChange(e, 'confirmPassword')}
+                     autoComplete="confirm-password" />
           <Button variant="contained"
                   margin="normal"
                   style={styles.button}
@@ -79,8 +100,8 @@ class SignIn extends React.Component {
                   fullWidth={true}
                   disableElevation={true}
                   onClick={this.save}
-                  startIcon={<i className="material-icons">fingerprint</i>}>
-            Sign In
+                  startIcon={<i className="material-icons">person_add</i>}>
+            Sign Up
           </Button>
         </form>
       </Container>
@@ -88,4 +109,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default SignUp;

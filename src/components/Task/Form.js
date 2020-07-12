@@ -24,8 +24,8 @@ class Form extends React.Component {
     this.setState({
       data: {
         ...this.state.data,
-        [field]: e.target.value
-      }
+        [field]: e.target.value,
+      },
     });
   }
 
