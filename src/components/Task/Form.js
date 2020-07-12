@@ -50,7 +50,7 @@ class Form extends React.Component {
         margin: theme.spacing(1),
         width: theme.spacing(32),
       },
-      rightButton: {
+      button: {
         marginLeft: 'auto',
         marginTop: theme.spacing(2),
       },
@@ -93,7 +93,7 @@ class Form extends React.Component {
                      type="number" />
           <Button variant="contained"
                   margin="normal"
-                  style={styles.rightButton}
+                  style={styles.button}
                   color="primary"
                   fullWidth={true}
                   disableElevation={true}
