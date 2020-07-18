@@ -1,4 +1,9 @@
 import React, { Suspense } from 'react';
+
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import TopMenu from './components/TopMenu';
 
 function App() {
@@ -9,21 +14,28 @@ function App() {
 
   return (
     <div className="App">
-      <TopMenu />
-      <br />
-      <Suspense fallback={<div>Loading...</div>}>
-        <SignUp />
-      </Suspense>
-      <br />
-      <Suspense fallback={<div>Loading...</div>}>
-        <SignIn />
-      </Suspense>
-      <br />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Router>
+        <TopMenu />
+        <br />
+        <Switch>
+          <Route path="/user/sign_in">
+            <Suspense fallback={<CircularProgress />}>
+              <SignIn />
+            </Suspense>
+          </Route>
+          <Route path="/user/sign_up">
+            <Suspense fallback={<CircularProgress />}>
+              <SignUp />
+            </Suspense>
+          </Route>
+        </Switch>
+      </Router>
+      <br /><br />
+      <Suspense fallback={<CircularProgress />}>
         <Form />
       </Suspense>
       <br />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<CircularProgress />}>
         <Task />
       </Suspense>
     </div>
