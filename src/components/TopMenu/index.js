@@ -8,12 +8,17 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+
+import { withStyles } from '@material-ui/core';
 
 class TopMenu extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      current: 0,
       userMenuAnchor: null,
     };
   }
@@ -26,8 +31,12 @@ class TopMenu extends React.Component {
     this.setState({ userMenuAnchor: null });
   }
 
+  handleMenuChange = (e, current) => {
+    this.setState({ current })
+  }
+
   render() {
-    const { userMenuAnchor } = this.state;
+    const { current, userMenuAnchor } = this.state;
 
     const theme = createMuiTheme();
     const styles = {
@@ -41,6 +50,34 @@ class TopMenu extends React.Component {
       }
     }
 
+    const StyledTabs = withStyles({
+      indicator: {
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+        '& > span': {
+          maxWidth: 60,
+          width: '100%',
+          backgroundColor: '#fff',
+        },
+      },
+    })((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
+
+    const StyledTab = withStyles((theme) => ({
+      root: {
+        textTransform: 'none',
+        color: '#fff',
+        minWidth: theme.spacing(11),
+        maxWidth: theme.spacing(11),
+        '&:visited': {
+          color: '#fff',
+        },
+        '&:focus': {
+          opacity: 1,
+        },
+      },
+    }))((props) => <Tab disableRipple {...props} />);
+
     return (
       <AppBar position="static">
         <Toolbar>
@@ -50,6 +87,13 @@ class TopMenu extends React.Component {
           <Typography variant="h6">
             Chore Bot
           </Typography>
+          <div style={{ marginLeft: theme.spacing(2) }}>
+            <StyledTabs value={current} onChange={this.handleMenuChange} TabIndicatorProps={{ children: <span /> }} aria-label="styled tabs example">
+              <StyledTab component={Link} to="/" label="Home" />
+              <StyledTab component={Link} to="/" label="Household" />
+              <StyledTab component={Link} to="/" label="Tasks" />
+            </StyledTabs>
+          </div>
           <section style={styles.rightButton}>
             <IconButton aria-label="Account of current user"
                         aria-haspopup="true"
